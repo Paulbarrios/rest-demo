@@ -6,22 +6,16 @@ let cambiarNombreUsuario = function(usuario) {
   return usuario;
 };
 
-let getAllUsers = (req, res) => {
+let getAllUsers = async (req, res) => {
   let desde = Number(req.query.desde) || 0;
   let limit = Number(req.query.limit) || 5;
 
-  Usuario.getUsers(usuarios => {
-    if (err) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: "Datos no encontrados"
-      });
-    }
+  let result = await Usuario.getUsers();
+  console.log(result);
 
-    res.json({
-      ok: true,
-      usuarios
-    });
+  res.json({
+    ok: true,
+    result
   });
 };
 

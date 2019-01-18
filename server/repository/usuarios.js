@@ -1,8 +1,8 @@
-module.exports.getUsers = callback => {
-  Usuario.find({})
-    .skip(desde)
-    .limit(limit)
-    .exec((err, usuarios) => {
-      callback(usuarios);
-    });
+const Usuario = require("../models/usuario");
+
+module.exports.getUsers = () => {
+  return Usuario.find({})
+    .skip(0)
+    .limit()
+    .exec();
 };
